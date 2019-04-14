@@ -35,13 +35,15 @@ public class BasicReceipt implements Receipt{
         System.out.println("-------------------------------------------------------------------------");
 
         //Print the BestBuy store address details
-        System.out.println("BEST BUY " + "Store #: " + store_header.getStore_num());
+        System.out.println("BEST BUY " + "Store # " + store_header.getStore_num());
         System.out.println(store_header.getStreet_addr() + ", " + store_header.getState_code() + ", " + store_header.getZip_code() + ", " +  store_header.getPhone_num());
 
         //Print the date & time of receipt creation
         System.out.println(date.getTime());
+        System.out.println(" ");
 
-        System.out.println("ITEM #");
+        System.out.println("-------------------------------Your Items--------------------------------");
+        System.out.println(" ");
 
         //Print the list of items that are being purchased
         for (StoreItem item: purchaseditems.purchaseditems)
