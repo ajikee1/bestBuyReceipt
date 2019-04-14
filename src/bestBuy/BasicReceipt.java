@@ -43,7 +43,7 @@ public class BasicReceipt implements Receipt{
         System.out.println("ITEM #");
 
         //Print the list of items that are being purchased
-        for (StoreItem item: purchaseditems.items)
+        for (StoreItem item: purchaseditems.purchaseditems)
         {
             System.out.println(item.getItemCode() + "  " + item.getItemDescription() + "  " + item.getItemPrice());
         }
