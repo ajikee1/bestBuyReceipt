@@ -13,12 +13,14 @@ public class main {
 
     public static void main(String[] args) {
 
+        PurchasedItems Purchase = null;
+
         //Creates a Date object and prompt the user for the date
         System.out.print("\nEnter date in yyy-mm-dd format: ");
         Scanner sc = new Scanner(System.in);
         String dtPrompt = sc.nextLine();
         Calendar calendar = getDate(dtPrompt);
-       // System.out.println(calendar.get(Calendar.MONTH) + 1);
+        // System.out.println(calendar.get(Calendar.MONTH) + 1);
 
         //Display all items in the inventory
         ArrayList<StoreItem> Inventory = getInventory();
@@ -32,9 +34,18 @@ public class main {
         System.out.println("-------------------------------------------------------------------------");
 
         //Ask the user to enter the item Code to purchase Cart
-        System.out.print("Enter the Item Code of the item to purchase: ");
-        String selection = sc.nextLine();
-        PurchasedItems Purchase = purchaseItem(Inventory, selection);
+        String selection = "";
+
+        while (!selection.equalsIgnoreCase("Q")) {
+            System.out.print("Enter the Item Code of the item to purchase: ");
+            selection = sc.nextLine();
+
+            if (selection.equalsIgnoreCase("Q")) {
+                break;
+            }
+
+            Purchase = purchaseItem(Inventory, selection);
+        }
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("");
 
