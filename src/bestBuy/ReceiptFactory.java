@@ -71,19 +71,19 @@ public class ReceiptFactory {
         {
             if(on.applies(purchasedItems) == true && on instanceof SecondaryHeading)
             {
+                // 5. Links in the decorator object based on the Decorator design pattern.
                 receipt = new PreDecorator(receipt, on);
 
             }
             else if ((on.applies(purchasedItems) == true && on instanceof Coupon) || (on.applies(purchasedItems) ==true && on instanceof Rebate))
             {
+                // 5. Links in the decorator object based on the Decorator design pattern.
                 receipt = new PostDecorator(receipt, on);
             }
         }
 
-        // 5. Links in the decorator object based on the Decorator design pattern.
         // 6. Returns decorated BasicReceipt object as type Receipt.
-
-        return (Receipt) receipt;
+        return receipt;
     }
 
     }
