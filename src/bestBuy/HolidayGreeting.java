@@ -8,6 +8,10 @@ public class HolidayGreeting implements SecondaryHeading{
 
     //Secondary heading content
     public String getLines() {
-        return " *Happy Holidays from Best Buy* ";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        sb.append("    **  Happy Holidays from Best Buy  **      ");
+        sb.append("\n");
+        return sb.toString();
     }
 }

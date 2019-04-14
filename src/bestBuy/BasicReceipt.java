@@ -32,7 +32,7 @@ public class BasicReceipt implements Receipt{
     //print receipt method that prints the basic receipt
     public void prtReceipt() {
 
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------");
 
         //Print the BestBuy store address details
         System.out.println("BEST BUY " + "Store #: " + store_header.getStore_num());
@@ -46,7 +46,7 @@ public class BasicReceipt implements Receipt{
         //Print the list of items that are being purchased
         for (StoreItem item: purchaseditems.purchaseditems)
         {
-            System.out.println(item.getItemCode() + "  " + item.getItemDescription() + "  " + item.getItemPrice());
+            System.out.println(item.getItemCode() + "\t" + item.getItemDescription() + "\t" + item.getItemPrice());
         }
 
         //Get the total amount before taxes
@@ -61,7 +61,7 @@ public class BasicReceipt implements Receipt{
         System.out.println(" ");
         System.out.println("Total with taxes: "  + totalwithTax(purchaseditems.getTotalCost(),tc.computeTax(purchaseditems, date)));
 
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------");
 
     }
 

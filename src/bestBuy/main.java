@@ -14,7 +14,7 @@ public class main {
     public static void main(String[] args) {
 
         //Creates a Date object and prompt the user for the date
-        System.out.println("\nEnter date in yyy-mm-dd format: ");
+        System.out.print("\nEnter date in yyy-mm-dd format: ");
         Scanner sc = new Scanner(System.in);
         String dtPrompt = sc.nextLine();
         Calendar calendar = getDate(dtPrompt);
@@ -23,19 +23,22 @@ public class main {
         //Display all items in the inventory
         ArrayList<StoreItem> Inventory = getInventory();
         System.out.println("Items in our inventory: ");
-        System.out.println("-----------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------");
         System.out.println("ITEM CODE \t" + "ITEM DESCRIPTION \t" + "ITEM PRICE");
         for (StoreItem inventoryItem: Inventory)
         {
             System.out.println(inventoryItem.getItemCode() + "\t" + inventoryItem.getItemDescription() + "\t" + inventoryItem.getItemPrice());
         }
-        System.out.println("-----------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------");
 
         //Ask the user to enter the item Code to purchase Cart
-        System.out.println("\n Enter the Item Code of the item to purchase:");
+        System.out.print("Enter the Item Code of the item to purchase: ");
         String selection = sc.nextLine();
         PurchasedItems Purchase = purchaseItem(Inventory, selection);
+        System.out.println("-------------------------------------------------------------------------");
+        System.out.println("");
 
+        //Create the receipts
         ReceiptFactory factory = new ReceiptFactory();
         Receipt receipt = factory.getReceipt(Purchase, calendar);
         receipt.prtReceipt();
@@ -106,7 +109,7 @@ public class main {
             if (selection.equalsIgnoreCase(item.getItemCode()))
             {
                 purchasedItems.addItem(new StoreItem(item.getItemCode(), item.getItemDescription(), item.getItemPrice()));
-                System.out.println("Adding "+ item.getItemDescription() + " to your cart.");
+                System.out.println("........Adding "+ item.getItemDescription() + " to the cart.");
             }
         }
         return purchasedItems;
