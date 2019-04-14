@@ -1,5 +1,7 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 public class StoreHeader {
 
     private String street_addr;
@@ -8,8 +10,7 @@ public class StoreHeader {
     private String phone_num;
     private String store_num;
 
-    public StoreHeader(String street_addr, String zip_code, String state_code, String phone_num, String store_num)
-    {
+    public StoreHeader(String street_addr, String zip_code, String state_code, String phone_num, String store_num) {
         this.street_addr = street_addr;
         this.zip_code = zip_code;
         this.state_code = state_code;

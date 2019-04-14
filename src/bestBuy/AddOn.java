@@ -1,8 +1,10 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 public interface AddOn {
 
-    public boolean applies(PurchasedItems items);
+    boolean applies(PurchasedItems items);
 
-    public String getLines();
+    String getLines();
 }

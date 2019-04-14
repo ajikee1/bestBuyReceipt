@@ -1,5 +1,7 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 import java.util.ArrayList;
 
 public class Rebate1406 implements Rebate {
@@ -12,20 +14,18 @@ public class Rebate1406 implements Rebate {
         return purchaseditems.containsItem("rebateItem");
     }
 
-    public String getLines()
-    {
-         String itemCode = null;
-         String itemDescription = null;
-         double itemPrice = 0.00;
+    public String getLines() {
+        String itemCode = null;
+        String itemDescription = null;
+        double itemPrice = 0.00;
 
-         for(StoreItem item: storeItem)
-         {
-             if (item.getItemCode().equalsIgnoreCase(rebateItem)) {
-                 itemCode = item.getItemCode();
-                 itemDescription = item.getItemDescription();
-                 itemPrice = item.getItemPrice();
-             }
-         }
+        for (StoreItem item : storeItem) {
+            if (item.getItemCode().equalsIgnoreCase(rebateItem)) {
+                itemCode = item.getItemCode();
+                itemDescription = item.getItemDescription();
+                itemPrice = item.getItemPrice();
+            }
+        }
 
         StringBuilder sb = new StringBuilder();
         sb.append("$10 rebate for " + itemCode + " " + itemDescription + " " + itemPrice);

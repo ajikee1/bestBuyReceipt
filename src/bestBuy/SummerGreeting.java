@@ -1,6 +1,8 @@
 package bestBuy;
 
-public class SummerGreeting implements SecondaryHeading{
+//AUTHOR: AJITH V KEERIKKATTIL
+
+public class SummerGreeting implements SecondaryHeading {
 
     public boolean applies(PurchasedItems items) {
         return true; // SecondaryHeading decorators always applied

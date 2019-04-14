@@ -1,8 +1,10 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 import java.util.Calendar;
 
-public class BasicReceipt implements Receipt{
+public class BasicReceipt implements Receipt {
 
     private StoreHeader store_header; // street address, state code, phone number, store number
     private TaxComputationMethod tc;
@@ -23,8 +25,7 @@ public class BasicReceipt implements Receipt{
     }
 
     //Add the tax to the total to return the final total
-    private double totalwithTax(double costPreTax, double tax)
-    {
+    private double totalwithTax(double costPreTax, double tax) {
         return costPreTax + tax;
     }
 
@@ -35,7 +36,7 @@ public class BasicReceipt implements Receipt{
 
         //Print the BestBuy store address details
         System.out.println("BEST BUY " + "Store # " + store_header.getStore_num());
-        System.out.println(store_header.getStreet_addr() + ", " + store_header.getState_code() + ", " + store_header.getZip_code() + ", " +  store_header.getPhone_num());
+        System.out.println(store_header.getStreet_addr() + ", " + store_header.getState_code() + ", " + store_header.getZip_code() + ", " + store_header.getPhone_num());
 
         //Print the date & time of receipt creation
         System.out.println(date.getTime());
@@ -45,8 +46,7 @@ public class BasicReceipt implements Receipt{
         System.out.println(" ");
 
         //Print the list of items that are being purchased
-        for (StoreItem item: purItems.purchaseditems)
-        {
+        for (StoreItem item : purItems.purchaseditems) {
             System.out.println(item.getItemCode() + "\t" + item.getItemDescription() + "\t" + item.getItemPrice());
         }
 
@@ -60,10 +60,10 @@ public class BasicReceipt implements Receipt{
 
         //Final total
         System.out.println(" ");
-        System.out.println("Total with taxes: $"  + totalwithTax(purItems.getTotalCost(),tc.computeTax(purItems, date)));
+        System.out.println("Total with taxes: $" + totalwithTax(purItems.getTotalCost(), tc.computeTax(purItems, date)));
 
         System.out.println("-------------------------------------------------------------------------");
 
     }
 
-    }
+}

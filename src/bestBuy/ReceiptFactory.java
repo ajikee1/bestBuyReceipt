@@ -1,5 +1,7 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Calendar;
@@ -7,14 +9,13 @@ import java.util.Scanner;
 
 public class ReceiptFactory {
 
+    StoreHeader store_header;
     private String storeID;
     private String storeAddress;
     private String storePhone;
     private String stateCode;
     private String zip_code;
-
-    StoreHeader store_header;
-    private TaxComputationMethod[] taxComputationsObjs;  // tax computation objs (for each state)
+    private TaxComputationMethod[] taxComputationsObjs;  // tax computation objects (for each state)
     private AddOn[] addOns; // secondary heading, rebate and coupon add-ons (hardcoded here)
 
 
@@ -23,16 +24,11 @@ public class ReceiptFactory {
         // 1. Populates array of TaxComputationMethod objects and array of AddOn objects (as if downloaded from the BestBuy web site).
 
         addOns = new AddOn[3];
-        if (date.get(Calendar.MONTH) ==Calendar.NOVEMBER || date.get(Calendar.MONTH) ==Calendar.DECEMBER)
-        {
+        if (date.get(Calendar.MONTH) == Calendar.NOVEMBER || date.get(Calendar.MONTH) == Calendar.DECEMBER) {
             addOns[0] = new HolidayGreeting();
-        }
-        else if (date.get(Calendar.MONTH) ==Calendar.JUNE || date.get(Calendar.MONTH) ==Calendar.JULY || date.get(Calendar.MONTH) ==Calendar.AUGUST)
-        {
+        } else if (date.get(Calendar.MONTH) == Calendar.JUNE || date.get(Calendar.MONTH) == Calendar.JULY || date.get(Calendar.MONTH) == Calendar.AUGUST) {
             addOns[0] = new SummerGreeting();
-        }
-        else
-        {
+        } else {
             addOns[0] = new SecondaryHeading() {
                 @Override
                 public boolean applies(PurchasedItems items) {
@@ -56,18 +52,16 @@ public class ReceiptFactory {
         // 2. Reads config file to create and save StoreHeader object (store_num, street_addr, etc.) to be used on all receipts.
         try {
             Scanner sc = new Scanner(new File("/Users/ajithkeerikkattil/Desktop/intelliJcode/bestBuyReceipt/config.dat"));
-            this.storeID =sc.nextLine();
+            this.storeID = sc.nextLine();
             this.storeAddress = sc.nextLine();
             this.storePhone = sc.nextLine();
             this.stateCode = sc.nextLine();
             this.zip_code = sc.nextLine();
 
             //Initialize the storeHeader
-            store_header = new StoreHeader(storeAddress, zip_code, stateCode, storePhone,storeID);
+            store_header = new StoreHeader(storeAddress, zip_code, stateCode, storePhone, storeID);
 
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println(e);
         }
 
@@ -83,28 +77,22 @@ public class ReceiptFactory {
         ((BasicReceipt) receipt).setStoreHeader(store_header);
 
 
-        if(stateCode.equalsIgnoreCase("MD")) {
+        if (stateCode.equalsIgnoreCase("MD")) {
             //3. Sets the TaxComputationMethod object of the BasicReceipt (by call to the setTaxComputationMethod of BasicReceipt).
             ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[0]);
         }
 
         // 4. Traverses over all AddOn objects, calling the applies method of each. If an AddOn object applies, then determines if the AddOn is of type SecondaryHeader, Rebate, or Coupon.
         //If of type SecondaryHeader, then creates a PreDecorator for the AddOn. If of type Rebate or Coupon, then creates a PostDecorator.
-        for (AddOn on: addOns)
-        {
-            if(on.applies(purchasedItems) == true && on instanceof SecondaryHeading)
-            {
+        for (AddOn on : addOns) {
+            if (on.applies(purchasedItems) == true && on instanceof SecondaryHeading) {
                 // 5. Links in the decorator object based on the Decorator design pattern.
                 receipt = new PreDecorator(receipt, on);
 
-            }
-            else if (on.applies(purchasedItems) == true && on instanceof Coupon)
-            {
+            } else if (on.applies(purchasedItems) == true && on instanceof Coupon) {
                 // 5. Links in the decorator object based on the Decorator design pattern.
                 receipt = new PostDecorator(receipt, on);
-            }
-            else if (on.applies(purchasedItems) == true && on instanceof Rebate)
-            {
+            } else if (on.applies(purchasedItems) == true && on instanceof Rebate) {
                 receipt = new PostDecorator(receipt, on);
             }
         }
@@ -113,4 +101,4 @@ public class ReceiptFactory {
         return receipt;
     }
 
-    }
+}

@@ -1,13 +1,14 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 public class StoreItem {
 
     private String itemCode;
     private String itemDescription;
     private double itemPrice;
 
-    public StoreItem( String code, String description, double price)
-    {
+    public StoreItem(String code, String description, double price) {
         this.itemCode = code;
         this.itemDescription = description;
         this.itemPrice = price;
@@ -25,8 +26,7 @@ public class StoreItem {
         return itemPrice;
     }
 
-    public String toString()
-    {
+    public String toString() {
         String price = Double.toString(getItemPrice());
         return getItemCode() + "\t" + getItemDescription() + "\t" + price;
     }

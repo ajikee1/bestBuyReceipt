@@ -1,16 +1,17 @@
 package bestBuy;
 
+//AUTHOR: AJITH V KEERIKKATTIL
+
 public abstract class Decorator implements Receipt {
     private Receipt trailer;
     private AddOn addon;
 
-    public Decorator(Receipt r, AddOn a)
-    {
-        trailer = r; addon = a;
+    public Decorator(Receipt r, AddOn a) {
+        trailer = r;
+        addon = a;
     }
 
-    protected void callTrailer()
-    {
+    protected void callTrailer() {
         trailer.prtReceipt();
     }
 
