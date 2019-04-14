@@ -6,6 +6,7 @@ public class HolidayGreeting implements SecondaryHeading{
         return true; // SecondaryHeading decorators always applied
     }
 
+    //Secondary heading content
     public String getLines() {
         return " *Happy Holidays from Best Buy* ";
     }

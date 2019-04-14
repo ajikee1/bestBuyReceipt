@@ -4,18 +4,19 @@ import java.util.ArrayList;
 
 public class PurchasedItems {
 
-    public ArrayList <StoreItem> items;
+    public ArrayList <StoreItem> purchaseditems;
 
     //constructor
     public PurchasedItems()
     {
 
-        items = new ArrayList();
+        purchaseditems = new ArrayList();
     }
 
+    //add a storeItem to the purchaseItem array
     public void addItem( StoreItem item)
     {
-        items.add(item);
+        purchaseditems.add(item);
     }
 
     //get the total cost of items in the purchase array
@@ -24,17 +25,22 @@ public class PurchasedItems {
     {
         double totalCost = 0;
 
-        for(StoreItem item: items)
+        for(StoreItem item: purchaseditems)
         {
             totalCost += item.getItemPrice();
         }
         return totalCost;
     }
 
+    //returns true if the purchaseItem array contains an item with the specified itemCode
     public boolean containsItem(String itemCode)
     {
-
-        return true;
+        for (StoreItem item: purchaseditems)
+        {
+            if (item.getItemCode().equalsIgnoreCase(itemCode))
+                return true;
+        }
+        return false;
     }
 
 
