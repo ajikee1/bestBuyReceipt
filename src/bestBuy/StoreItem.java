@@ -25,4 +25,11 @@ public class StoreItem {
         return itemPrice;
     }
 
+    public String toString()
+    {
+        String price = Double.toString(getItemPrice());
+        return getItemCode() + "\t" + getItemDescription() + "\t" + price;
+    }
+
+
 }
