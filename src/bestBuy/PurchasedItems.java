@@ -1,5 +1,6 @@
 package bestBuy;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class PurchasedItems {
@@ -29,7 +30,9 @@ public class PurchasedItems {
         {
             totalCost += item.getItemPrice();
         }
-        return totalCost;
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        String costFormat = numberFormat.format(totalCost);
+        return Double.parseDouble(costFormat);
     }
 
     //returns true if the purchaseItem array contains an item with the specified itemCode
