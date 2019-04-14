@@ -27,8 +27,7 @@ public class main {
         System.out.println("Items in our inventory: ");
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("ITEM CODE \t" + "ITEM DESCRIPTION \t" + "ITEM PRICE");
-        for (StoreItem inventoryItem: Inventory)
-        {
+        for (StoreItem inventoryItem : Inventory) {
             System.out.println(inventoryItem.getItemCode() + "\t" + inventoryItem.getItemDescription() + "\t" + inventoryItem.getItemPrice());
         }
         System.out.println("-------------------------------------------------------------------------");
@@ -43,11 +42,11 @@ public class main {
             if (selection.equalsIgnoreCase("Q")) {
                 break;
             }
-                Purchase = purchaseItem(Inventory, selection);
+            Purchase = purchaseItem(Inventory, selection);
 
         }
         System.out.println("-------------------------------------------------------------------------");
-        System.out.println("");
+        System.out.println();
 
         //Create the receipts
         ReceiptFactory factory = new ReceiptFactory(calendar);
@@ -57,8 +56,7 @@ public class main {
 
     }
 
-    public static Calendar getDate(String dtPrompt)
-    {
+    public static Calendar getDate(String dtPrompt) {
         //Creates a Date object and prompt the user for the date
         Calendar calendar = Calendar.getInstance();
         Date date;
@@ -66,43 +64,38 @@ public class main {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         fmt.setLenient(false);
 
-        try{
+        try {
             date = fmt.parse(dtPrompt);
             calendar.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY));
-            calendar.set(Calendar.MINUTE,calendar.get(Calendar.MINUTE));
-            calendar.set(Calendar.SECOND,calendar.get(Calendar.SECOND));
+            calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE));
+            calendar.set(Calendar.SECOND, calendar.get(Calendar.SECOND));
+        } catch (ParseException e) {
         }
-        catch (ParseException e)
-        {}
 
         return calendar;
     }
 
 
-    public static ArrayList<StoreItem> getInventory()
-    {
+    public static ArrayList<StoreItem> getInventory() {
         //Read items from inventory file and display to user
         ArrayList<StoreItem> inventory = new ArrayList<StoreItem>();
 
         try {
             Scanner sc2 = new Scanner(new File("/Users/ajithkeerikkattil/Desktop/intelliJcode/bestBuyReceipt/bbInventory.txt"));
 
-            while (sc2.hasNext())
-            {
+            while (sc2.hasNext()) {
                 String inventoryLine = sc2.nextLine();
                 String[] split = inventoryLine.split(",");
                 String itemCode = split[0];
                 String itemDescription = split[1];
                 Double itemPrice = Double.parseDouble(split[2]);
 
-                inventory.add(new StoreItem(itemCode, itemDescription,itemPrice ));
+                inventory.add(new StoreItem(itemCode, itemDescription, itemPrice));
             }
             sc2.close();
 
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             System.out.println(e);
         }
 
@@ -110,16 +103,13 @@ public class main {
     }
 
     //method that add the user selection to PurchasedItems
-    public static PurchasedItems purchaseItem(ArrayList<StoreItem> inventory, String selection)
-    {
+    public static PurchasedItems purchaseItem(ArrayList<StoreItem> inventory, String selection) {
         PurchasedItems purchasedItems = new PurchasedItems();
 
-        for(StoreItem item :inventory)
-        {
-            if (selection.equalsIgnoreCase(item.getItemCode()))
-            {
+        for (StoreItem item : inventory) {
+            if (selection.equalsIgnoreCase(item.getItemCode())) {
                 purchasedItems.addItem(new StoreItem(item.getItemCode(), item.getItemDescription(), item.getItemPrice()));
-                System.out.println("........Adding "+ item.getItemDescription() + " to the cart.");
+                System.out.println("........Adding " + item.getItemDescription() + " to the cart.");
             }
         }
         return purchasedItems;
