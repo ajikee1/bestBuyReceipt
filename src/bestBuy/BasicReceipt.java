@@ -7,10 +7,10 @@ public class BasicReceipt implements Receipt{
     private StoreHeader store_header; // street address, state code, phone number, store number
     private TaxComputationMethod tc;
     private Calendar date; // may also be a String type
-    private PurchasedItems purchaseditems;
+    private PurchasedItems purItems;
 
     public BasicReceipt(PurchasedItems purchaseditems, Calendar date) {
-        this.purchaseditems = purchaseditems;
+        this.purItems = purchaseditems;
         this.date = date;
     }
 
@@ -45,22 +45,22 @@ public class BasicReceipt implements Receipt{
         System.out.println(" ");
 
         //Print the list of items that are being purchased
-        for (StoreItem item: purchaseditems.purchaseditems)
+        for (StoreItem item: purItems.purchaseditems)
         {
             System.out.println(item.getItemCode() + "\t" + item.getItemDescription() + "\t" + item.getItemPrice());
         }
 
         //Get the total amount before taxes
         System.out.println(" ");
-        System.out.println("Total before taxes: $" + purchaseditems.getTotalCost());
+        System.out.println("Total before taxes: $" + purItems.getTotalCost());
 
         //Calculate and display state specific sales tax
         System.out.println(" ");
-        System.out.println(store_header.getState_code() + " Sales tax $: " + tc.computeTax(purchaseditems, date));
+        System.out.println(store_header.getState_code() + " Sales tax $: " + tc.computeTax(purItems, date));
 
         //Final total
         System.out.println(" ");
-        System.out.println("Total with taxes: $"  + totalwithTax(purchaseditems.getTotalCost(),tc.computeTax(purchaseditems, date)));
+        System.out.println("Total with taxes: $"  + totalwithTax(purItems.getTotalCost(),tc.computeTax(purItems, date)));
 
         System.out.println("-------------------------------------------------------------------------");
 

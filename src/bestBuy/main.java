@@ -43,8 +43,8 @@ public class main {
             if (selection.equalsIgnoreCase("Q")) {
                 break;
             }
+                Purchase = purchaseItem(Inventory, selection);
 
-            Purchase = purchaseItem(Inventory, selection);
         }
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("");
@@ -112,7 +112,6 @@ public class main {
     //method that add the user selection to PurchasedItems
     public static PurchasedItems purchaseItem(ArrayList<StoreItem> inventory, String selection)
     {
-        ArrayList<StoreItem> purchaseItem = new ArrayList<StoreItem>();
         PurchasedItems purchasedItems = new PurchasedItems();
 
         for(StoreItem item :inventory)

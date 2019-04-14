@@ -11,7 +11,7 @@ public class PurchasedItems {
     public PurchasedItems()
     {
 
-        purchaseditems = new ArrayList();
+        purchaseditems = new ArrayList<StoreItem>();
     }
 
     //add a storeItem to the purchaseItem array
