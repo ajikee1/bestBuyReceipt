@@ -24,7 +24,6 @@ public class MDTaxComputation extends TaxComputationMethod {
         return tax;
     }
 
-
     //returns TRUE if the receipt date is on the tax free day
      public boolean taxHoliday(Calendar purchaseDate)
     {
