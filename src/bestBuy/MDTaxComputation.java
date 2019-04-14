@@ -8,17 +8,20 @@ public class MDTaxComputation extends TaxComputationMethod {
     public double computeTax(PurchasedItems purchaseditems, Calendar purchaseDate) {
 
         double mdTax = .06;
+        double tax = 0.00;
 
         //calling the local taxHoliday() method to see if the date is a tax holiday
         boolean isTaxFreeHoliday = taxHoliday(purchaseDate);
 
         if(isTaxFreeHoliday == true)
         {
-            for (StoreItem item: purchaseditems.items)
-            {
-
-            }
+            tax = 0.00;
         }
+        else
+        {
+            tax = purchaseditems.getTotalCost() * mdTax;
+        }
+        return tax;
     }
 
 
