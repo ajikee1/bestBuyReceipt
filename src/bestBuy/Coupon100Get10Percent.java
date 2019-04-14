@@ -2,12 +2,18 @@ package bestBuy;
 
 public class Coupon100Get10Percent implements Coupon{
 
-    public boolean applies(PurchasedItems items) {
-        return items.containsItem("1406");
+    //return true if the purchase total is greater than or equal to 100
+    public boolean applies(PurchasedItems purchaseditems) {
+
+        if (purchaseditems.getTotalCost() >= 100.00)
+        {
+            return true;
+        }
+        return  false;
     }
 
     public String getLines()
     {
-        return "BEST BUY COUPON  10% off next purchase Good until 12/31/2018";
+        return "BEST BUY COUPON: "  + "10% off next purchase \n Good until 12/31/2019";
     }
 }

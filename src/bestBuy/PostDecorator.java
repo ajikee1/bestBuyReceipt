@@ -1,6 +1,7 @@
 package bestBuy;
 
 public class PostDecorator extends Decorator {
+
     private AddOn a;
 
     public PostDecorator(Receipt r, AddOn a) {
