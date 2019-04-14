@@ -22,6 +22,7 @@ public class BasicReceipt implements Receipt{
         this.tc = tc;
     }
 
+
     //Add the tax to the total to return the final total
     private double totalwithTax(double costPreTax, double tax)
     {
