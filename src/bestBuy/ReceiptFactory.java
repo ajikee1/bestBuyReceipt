@@ -18,11 +18,34 @@ public class ReceiptFactory {
     private AddOn[] addOns; // secondary heading, rebate and coupon add-ons (hardcoded here)
 
 
-    public ReceiptFactory() { // constructor
+    public ReceiptFactory(Calendar date) { // constructor
 
         // 1. Populates array of TaxComputationMethod objects and array of AddOn objects (as if downloaded from the BestBuy web site).
+
         addOns = new AddOn[3];
-        addOns[0] = new HolidayGreeting();
+        if (date.get(Calendar.MONTH) ==Calendar.NOVEMBER || date.get(Calendar.MONTH) ==Calendar.DECEMBER)
+        {
+            addOns[0] = new HolidayGreeting();
+        }
+        else if (date.get(Calendar.MONTH) ==Calendar.JUNE || date.get(Calendar.MONTH) ==Calendar.JULY || date.get(Calendar.MONTH) ==Calendar.AUGUST)
+        {
+            addOns[0] = new SummerGreeting();
+        }
+        else
+        {
+            addOns[0] = new SecondaryHeading() {
+                @Override
+                public boolean applies(PurchasedItems items) {
+                    return true;
+                }
+
+                @Override
+                public String getLines() {
+                    return " ";
+                }
+            };
+        }
+
         addOns[1] = new Coupon100Get10Percent();
         addOns[2] = new Rebate1406();
 
@@ -75,9 +98,13 @@ public class ReceiptFactory {
                 receipt = new PreDecorator(receipt, on);
 
             }
-            else if ((on.applies(purchasedItems) == true && on instanceof Coupon) || (on.applies(purchasedItems) ==true && on instanceof Rebate))
+            else if (on.applies(purchasedItems) == true && on instanceof Coupon)
             {
                 // 5. Links in the decorator object based on the Decorator design pattern.
+                receipt = new PostDecorator(receipt, on);
+            }
+            else if (on.applies(purchasedItems) == true && on instanceof Rebate)
+            {
                 receipt = new PostDecorator(receipt, on);
             }
         }

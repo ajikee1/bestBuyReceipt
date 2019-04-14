@@ -39,7 +39,7 @@ public class main {
         System.out.println("");
 
         //Create the receipts
-        ReceiptFactory factory = new ReceiptFactory();
+        ReceiptFactory factory = new ReceiptFactory(calendar);
         Receipt receipt = factory.getReceipt(Purchase, calendar);
         receipt.prtReceipt();
 
