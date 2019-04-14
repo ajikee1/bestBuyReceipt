@@ -54,20 +54,32 @@ public class ReceiptFactory {
     public Receipt getReceipt(PurchasedItems purchasedItems, Calendar date) {
 
         // 1. Sets the current date of the BasicReceipt.
-
-
-
-        BasicReceipt receipt = new BasicReceipt(purchasedItems, date);
+        Receipt receipt = new BasicReceipt(purchasedItems, date);
 
         // 2. Sets StoreHeader object of the BasicReceipt (by call to SetStoreHeader of BasicReceipt)
-        receipt.setStoreHeader(store_header);
+        ((BasicReceipt) receipt).setStoreHeader(store_header);
+
+
         if(stateCode.equalsIgnoreCase("MD")) {
             //3. Sets the TaxComputationMethod object of the BasicReceipt (by call to the setTaxComputationMethod of BasicReceipt).
-            receipt.setTaxComputationMethod(taxComputationsObjs[0]);
+            ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[0]);
         }
 
         // 4. Traverses over all AddOn objects, calling the applies method of each. If an AddOn object applies, then determines if the AddOn is of type SecondaryHeader, Rebate, or Coupon.
-        //If of type SecondaryHeader, then creates a PreDecorator for othe AddOn. If of type Rebate or Coupon, then creates a PostDecorator.
+        //If of type SecondaryHeader, then creates a PreDecorator for the AddOn. If of type Rebate or Coupon, then creates a PostDecorator.
+        for (AddOn on: addOns)
+        {
+            if(on.applies(purchasedItems) == true && on instanceof SecondaryHeading)
+            {
+                receipt = new PreDecorator(receipt, on);
+
+            }
+            else if ((on.applies(purchasedItems) == true && on instanceof Coupon) || (on.applies(purchasedItems) ==true && on instanceof Rebate))
+            {
+                receipt = new PostDecorator(receipt, on);
+            }
+        }
+
         // 5. Links in the decorator object based on the Decorator design pattern.
         // 6. Returns decorated BasicReceipt object as type Receipt.
 
