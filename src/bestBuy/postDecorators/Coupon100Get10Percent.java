@@ -15,6 +15,6 @@ public class Coupon100Get10Percent implements Coupon {
 
     //Coupon content
     public String getLines() {
-        return "BEST BUY COUPON: " + "10% off next purchase \n Good until 12/31/2019";
+        return "BEST BUY COUPON: " + "10% off next purchase \nGood until 12/31/2019";
     }
 }

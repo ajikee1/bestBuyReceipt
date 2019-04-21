@@ -50,7 +50,7 @@ public class Rebate9991 implements Rebate {
         sb.append("Mail ORIGINAL receipt and Proof of Purchase from package to:\n");
         sb.append("BEST BUY / SAMSUNG REBATES \n");
         sb.append("1000 Industry Way Owings Mills \n");
-        sb.append(" MD 21117 \n");
+        sb.append("MD 21117 \n");
 
         return sb.toString();
     }
