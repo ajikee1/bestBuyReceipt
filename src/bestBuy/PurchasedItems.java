@@ -20,6 +20,12 @@ public class PurchasedItems {
         purchaseditems.add(item);
     }
 
+
+    public ArrayList<StoreItem> getPurchaseditems()
+    {
+        return purchaseditems;
+    }
+
     //get the total cost of items in the purchase array
     public double getTotalCost() {
         double totalCost = 0;
