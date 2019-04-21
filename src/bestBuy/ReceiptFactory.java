@@ -43,7 +43,7 @@ public class ReceiptFactory {
         }
 
         addOns[1] = new Coupon100Get10Percent();
-        addOns[2] = new Rebate1406();
+        addOns[2] = new Rebate9991();
 
         taxComputationsObjs = new TaxComputationMethod[5];
         taxComputationsObjs[0] = new MDTaxComputation();
