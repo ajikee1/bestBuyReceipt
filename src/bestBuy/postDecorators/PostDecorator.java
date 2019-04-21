@@ -1,6 +1,10 @@
-package bestBuy;
+package bestBuy.postDecorators;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.general.Decorator;
+import bestBuy.interfaces.AddOn;
+import bestBuy.interfaces.Receipt;
 
 public class PostDecorator extends Decorator {
 

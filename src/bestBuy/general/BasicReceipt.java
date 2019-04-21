@@ -1,6 +1,9 @@
-package bestBuy;
+package bestBuy.general;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.taxComputation.TaxComputationMethod;
+import bestBuy.interfaces.Receipt;
 
 import java.util.Calendar;
 
@@ -46,7 +49,7 @@ public class BasicReceipt implements Receipt {
         System.out.println(" ");
 
         //Print the list of items that are being purchased
-        for (StoreItem item : purItems.purchaseditems) {
+        for (StoreItem item : purItems.getPurchaseditems()) {
             System.out.println(item.getItemCode() + "\t" + item.getItemDescription() + "\t" + item.getItemPrice());
         }
 

@@ -1,8 +1,9 @@
-package bestBuy;
+package bestBuy.interfaces;
 
 //AUTHOR: AJITH V KEERIKKATTIL
 
-public interface Coupon extends AddOn {
+public interface SecondaryHeading extends AddOn {
 
     //Marker interface with nothing to implement
+
 }

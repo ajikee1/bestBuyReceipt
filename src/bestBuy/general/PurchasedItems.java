@@ -1,4 +1,4 @@
-package bestBuy;
+package bestBuy.general;
 
 //AUTHOR: AJITH V KEERIKKATTIL
 
@@ -17,10 +17,12 @@ public class PurchasedItems {
 
     //add a storeItem to the purchaseItem array
     public void addItem(StoreItem item) {
-        purchaseditems.add(item);
+        int i = 0;
+        purchaseditems.add(i, item);
+        i++;
     }
 
-
+    //get the store items from the purchasedItems array
     public ArrayList<StoreItem> getPurchaseditems()
     {
         return purchaseditems;

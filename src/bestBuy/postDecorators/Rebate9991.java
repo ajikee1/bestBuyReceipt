@@ -1,6 +1,10 @@
-package bestBuy;
+package bestBuy.postDecorators;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.general.PurchasedItems;
+import bestBuy.general.StoreItem;
+import bestBuy.interfaces.Rebate;
 
 import java.util.ArrayList;
 

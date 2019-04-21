@@ -1,4 +1,4 @@
-package bestBuy;
+package bestBuy.general;
 
 //AUTHOR: AJITH V KEERIKKATTIL
 

@@ -1,6 +1,9 @@
-package bestBuy;
+package bestBuy.postDecorators;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.general.PurchasedItems;
+import bestBuy.interfaces.Coupon;
 
 public class Coupon100Get10Percent implements Coupon {
 

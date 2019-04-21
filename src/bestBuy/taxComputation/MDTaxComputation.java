@@ -1,6 +1,8 @@
-package bestBuy;
+package bestBuy.taxComputation;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.general.PurchasedItems;
 
 import java.util.Calendar;
 

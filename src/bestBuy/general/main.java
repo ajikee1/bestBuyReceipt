@@ -1,6 +1,8 @@
-package bestBuy;
+package bestBuy.general;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.interfaces.Receipt;
 
 import java.io.File;
 import java.io.FileNotFoundException;

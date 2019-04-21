@@ -1,6 +1,9 @@
-package bestBuy;
+package bestBuy.general;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+
+import bestBuy.interfaces.AddOn;
+import bestBuy.interfaces.Receipt;
 
 public abstract class Decorator implements Receipt {
     private Receipt trailer;
