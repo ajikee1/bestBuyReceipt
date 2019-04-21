@@ -13,7 +13,16 @@ public class Rebate1406 implements Rebate {
     //returns true if the list of purchased items contain an item with the item Number of 1406
     public boolean applies(PurchasedItems purchaseditems) {
         storeItem = purchaseditems.getPurchaseditems();
-        return purchaseditems.containsItem("rebateItem");
+
+        boolean contains = false;
+        for(StoreItem item: storeItem)
+        {
+            if(item.getItemCode().equalsIgnoreCase(rebateItem))
+            {
+                contains = true;
+            }
+        }
+        return contains;
     }
 
     public String getLines() {

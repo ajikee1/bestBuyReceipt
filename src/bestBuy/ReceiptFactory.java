@@ -105,7 +105,7 @@ public class ReceiptFactory {
                 receipt = new PostDecorator(receipt, on);
             }
 
-            if (on.applies(purchasedItems) == false && on instanceof Rebate) {
+            if (on.applies(purchasedItems) == true && on instanceof Rebate) {
                 receipt = new PostDecorator(receipt, on);
             }
         }
