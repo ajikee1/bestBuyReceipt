@@ -4,7 +4,8 @@ package bestBuy.general;
 
 import bestBuy.postDecorators.Coupon100Get10Percent;
 import bestBuy.postDecorators.PostDecorator;
-import bestBuy.postDecorators.Rebate9991;
+import bestBuy.postDecorators.RebateIpad;
+import bestBuy.postDecorators.RebateMacbook;
 import bestBuy.preDecorators.HolidayGreeting;
 import bestBuy.preDecorators.PreDecorator;
 import bestBuy.preDecorators.SummerGreeting;
@@ -35,7 +36,7 @@ public class ReceiptFactory {
     public ReceiptFactory(Calendar date) { // constructor
 
         // Populates array of TaxComputationMethod objects and array of AddOn objects (as if downloaded from the BestBuy web site).
-        addOns = new AddOn[3];
+        addOns = new AddOn[4];
         if (date.get(Calendar.MONTH) == Calendar.NOVEMBER || date.get(Calendar.MONTH) == Calendar.DECEMBER) {
             addOns[0] = new HolidayGreeting();
         } else if (date.get(Calendar.MONTH) == Calendar.JUNE || date.get(Calendar.MONTH) == Calendar.JULY || date.get(Calendar.MONTH) == Calendar.AUGUST) {
@@ -55,7 +56,8 @@ public class ReceiptFactory {
         }
 
         addOns[1] = new Coupon100Get10Percent();
-        addOns[2] = new Rebate9991();
+        addOns[2] = new RebateIpad();
+        addOns[3] = new RebateMacbook();
 
         taxComputationsObjs = new TaxComputationMethod[5];
         taxComputationsObjs[0] = new MDTaxComputation();

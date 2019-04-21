@@ -8,9 +8,9 @@ import bestBuy.interfaces.Rebate;
 
 import java.util.ArrayList;
 
-public class Rebate9991 implements Rebate {
+public class RebateMacbook implements Rebate {
 
-    String rebateItem = "9991";
+    String rebateItem = "1011";
     PurchasedItems purchaseditems;
     ArrayList<StoreItem> storeItem;
 
@@ -45,7 +45,7 @@ public class Rebate9991 implements Rebate {
 
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
-        sb.append("Congratulations. This item \"" + itemCode + " " + itemDescription + "\" qualifies for a $10 rebate. " );
+        sb.append("Congratulations. This item \"" + itemCode + " " + itemDescription + "\" qualifies for a $500 rebate. " );
         sb.append("To receive your rebate \n");
         sb.append("Mail ORIGINAL receipt and Proof of Purchase from package to:\n");
         sb.append("BEST BUY / SAMSUNG REBATES \n");
