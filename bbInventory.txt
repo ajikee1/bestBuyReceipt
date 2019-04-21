@@ -2,3 +2,5 @@
 9991,Ipad Pro,499.00
 1212,Powerbeats Pro,122.23
 5543,Lightning Cable,9.99
+1234,Galaxy Fold,1920.99
+4567,Apple Watch,499.99
