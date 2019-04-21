@@ -47,6 +47,7 @@ public class ReceiptFactory {
 
         taxComputationsObjs = new TaxComputationMethod[5];
         taxComputationsObjs[0] = new MDTaxComputation();
+        taxComputationsObjs[1] = new DETaxComputation();
 
 
         // 2. Reads config file to create and save StoreHeader object (store_num, street_addr, etc.) to be used on all receipts.
@@ -80,6 +81,10 @@ public class ReceiptFactory {
         if (stateCode.equalsIgnoreCase("MD")) {
             //3. Sets the TaxComputationMethod object of the BasicReceipt (by call to the setTaxComputationMethod of BasicReceipt).
             ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[0]);
+        }
+        else if (stateCode.equalsIgnoreCase("DE"))
+        {
+            ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[1]);
         }
 
         // 4. Traverses over all AddOn objects, calling the applies method of each. If an AddOn object applies, then determines if the AddOn is of type SecondaryHeader, Rebate, or Coupon.

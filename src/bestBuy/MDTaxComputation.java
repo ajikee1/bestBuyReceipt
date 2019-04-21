@@ -4,6 +4,7 @@ package bestBuy;
 
 import java.util.Calendar;
 
+//state with tax and tax holiday
 public class MDTaxComputation extends TaxComputationMethod {
 
     @Override
