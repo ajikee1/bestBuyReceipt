@@ -1,6 +1,7 @@
 package bestBuy.general;
 
 //AUTHOR: AJITH V KEERIKKATTIL
+//04-21-2019-FINAL VERSION
 
 import bestBuy.interfaces.Receipt;
 
@@ -40,7 +41,7 @@ public class main {
         String selection = "";
 
         while (!selection.equalsIgnoreCase("Q")) {
-            System.out.print("Enter the Item Code of the item to purchase: ");
+            System.out.print("Enter the Item Code of the item to purchase (Enter 'Q' to quit): ");
             selection = sc.nextLine();
 
             if (selection.equalsIgnoreCase("Q")) {

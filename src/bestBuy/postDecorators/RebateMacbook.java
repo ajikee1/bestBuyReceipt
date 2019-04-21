@@ -51,6 +51,7 @@ public class RebateMacbook implements Rebate {
         sb.append("BEST BUY / SAMSUNG REBATES \n");
         sb.append("1000 Industry Way Owings Mills \n");
         sb.append("MD 21117 \n");
+        sb.append("-------------------------------------------------------------------------\n");
 
         return sb.toString();
     }
