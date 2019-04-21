@@ -48,6 +48,7 @@ public class ReceiptFactory {
         taxComputationsObjs = new TaxComputationMethod[5];
         taxComputationsObjs[0] = new MDTaxComputation();
         taxComputationsObjs[1] = new DETaxComputation();
+        taxComputationsObjs[2] = new ILTaxComputation();
 
 
         // 2. Reads config file to create and save StoreHeader object (store_num, street_addr, etc.) to be used on all receipts.
@@ -77,14 +78,17 @@ public class ReceiptFactory {
         // 2. Sets StoreHeader object of the BasicReceipt (by call to SetStoreHeader of BasicReceipt)
         ((BasicReceipt) receipt).setStoreHeader(store_header);
 
-
+        //3. Sets the TaxComputationMethod object of the BasicReceipt (by call to the setTaxComputationMethod of BasicReceipt).
         if (stateCode.equalsIgnoreCase("MD")) {
-            //3. Sets the TaxComputationMethod object of the BasicReceipt (by call to the setTaxComputationMethod of BasicReceipt).
             ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[0]);
         }
         else if (stateCode.equalsIgnoreCase("DE"))
         {
             ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[1]);
+        }
+        else if (stateCode.equalsIgnoreCase("IL"))
+        {
+            ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[2]);
         }
 
         // 4. Traverses over all AddOn objects, calling the applies method of each. If an AddOn object applies, then determines if the AddOn is of type SecondaryHeader, Rebate, or Coupon.
@@ -93,9 +97,7 @@ public class ReceiptFactory {
             if (on.applies(purchasedItems) == true && on instanceof SecondaryHeading) {
                 // 5. Links in the decorator object based on the Decorator design pattern.
                 receipt = new PreDecorator(receipt, on);
-
             } else if (on.applies(purchasedItems) == true && on instanceof Coupon) {
-                // 5. Links in the decorator object based on the Decorator design pattern.
                 receipt = new PostDecorator(receipt, on);
             } else if (on.applies(purchasedItems) == true && on instanceof Rebate) {
                 receipt = new PostDecorator(receipt, on);
