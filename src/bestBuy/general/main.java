@@ -17,7 +17,7 @@ public class main {
 
     public static void main(String[] args) {
 
-        PurchasedItems Purchase = null;
+        PurchasedItems Purchase = new PurchasedItems();
 
         //Creates a Date object and prompt the user for the date
         System.out.print("\nEnter date in yyy-mm-dd format: ");
@@ -46,7 +46,14 @@ public class main {
             if (selection.equalsIgnoreCase("Q")) {
                 break;
             }
-            Purchase = purchaseItem(Inventory, selection);
+            for (StoreItem item : Inventory)
+            {
+                if (selection.equalsIgnoreCase(item.getItemCode())) {
+                    Purchase.addItem(new StoreItem(item.getItemCode(), item.getItemDescription(), item.getItemPrice()));
+                    System.out.println("........Adding " + item.getItemDescription() + " to the cart.");
+                }
+            }
+           // Purchase = purchaseItem(Inventory, selection);
 
         }
         System.out.println("-------------------------------------------------------------------------");
@@ -105,19 +112,5 @@ public class main {
 
         return inventory;
     }
-
-    //method that add the user selection to PurchasedItems
-    public static PurchasedItems purchaseItem(ArrayList<StoreItem> inventory, String selection) {
-        PurchasedItems purchasedItems = new PurchasedItems();
-
-        for (StoreItem item : inventory) {
-            if (selection.equalsIgnoreCase(item.getItemCode())) {
-                purchasedItems.addItem(new StoreItem(item.getItemCode(), item.getItemDescription(), item.getItemPrice()));
-                System.out.println("........Adding " + item.getItemDescription() + " to the cart.");
-            }
-        }
-        return purchasedItems;
-    }
-
 
 }
