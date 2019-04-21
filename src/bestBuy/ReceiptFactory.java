@@ -16,13 +16,13 @@ public class ReceiptFactory {
     private String stateCode;
     private String zip_code;
     private TaxComputationMethod[] taxComputationsObjs;  // tax computation objects (for each state)
+    private TaxComputationMethod taxComputationObject;
     private AddOn[] addOns; // secondary heading, rebate and coupon add-ons (hardcoded here)
 
 
     public ReceiptFactory(Calendar date) { // constructor
 
-        // 1. Populates array of TaxComputationMethod objects and array of AddOn objects (as if downloaded from the BestBuy web site).
-
+        // Populates array of TaxComputationMethod objects and array of AddOn objects (as if downloaded from the BestBuy web site).
         addOns = new AddOn[3];
         if (date.get(Calendar.MONTH) == Calendar.NOVEMBER || date.get(Calendar.MONTH) == Calendar.DECEMBER) {
             addOns[0] = new HolidayGreeting();
@@ -51,7 +51,7 @@ public class ReceiptFactory {
         taxComputationsObjs[2] = new ILTaxComputation();
 
 
-        // 2. Reads config file to create and save StoreHeader object (store_num, street_addr, etc.) to be used on all receipts.
+        // Reads config file to create and save StoreHeader object (store_num, street_addr, etc.) to be used on all receipts.
         try {
             Scanner sc = new Scanner(new File("/Users/ajithkeerikkattil/Desktop/intelliJcode/bestBuyReceipt/config.dat"));
             this.storeID = sc.nextLine();
@@ -67,7 +67,18 @@ public class ReceiptFactory {
             System.out.println(e);
         }
 
-        // 3. Based on the state code (e.g., “MD”) creates and stores appropriate StateComputation object to be used on all receipts.
+        //Based on the state code (e.g., “MD”) creates and stores appropriate StateComputation object to be used on all receipts.
+        if (stateCode.equalsIgnoreCase("MD")) {
+            taxComputationObject = taxComputationsObjs[0];
+        }
+        else if (stateCode.equalsIgnoreCase("DE"))
+        {
+            taxComputationObject = taxComputationsObjs[1];
+        }
+        else if (stateCode.equalsIgnoreCase("IL"))
+        {
+            taxComputationObject = taxComputationsObjs[2];
+        }
     }
 
     public Receipt getReceipt(PurchasedItems purchasedItems, Calendar date) {
@@ -79,17 +90,8 @@ public class ReceiptFactory {
         ((BasicReceipt) receipt).setStoreHeader(store_header);
 
         //3. Sets the TaxComputationMethod object of the BasicReceipt (by call to the setTaxComputationMethod of BasicReceipt).
-        if (stateCode.equalsIgnoreCase("MD")) {
-            ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[0]);
-        }
-        else if (stateCode.equalsIgnoreCase("DE"))
-        {
-            ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[1]);
-        }
-        else if (stateCode.equalsIgnoreCase("IL"))
-        {
-            ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationsObjs[2]);
-        }
+        ((BasicReceipt) receipt).setTaxComputationMethod(taxComputationObject);
+
 
         // 4. Traverses over all AddOn objects, calling the applies method of each. If an AddOn object applies, then determines if the AddOn is of type SecondaryHeader, Rebate, or Coupon.
         //If of type SecondaryHeader, then creates a PreDecorator for the AddOn. If of type Rebate or Coupon, then creates a PostDecorator.
