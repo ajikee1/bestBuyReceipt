@@ -53,17 +53,32 @@ public class BasicReceipt implements Receipt {
             System.out.println(item.getItemCode() + "\t" + item.getItemDescription() + "\t" + item.getItemPrice());
         }
 
-        //Get the total amount before taxes
-        System.out.println(" ");
-        System.out.println("Total before taxes: $" + purItems.getTotalCost());
 
         //Calculate and display state specific sales tax
         System.out.println(" ");
-        System.out.println(store_header.getState_code() + " Sales tax $: " + tc.computeTax(purItems, date));
+        if (store_header.getState_code().equalsIgnoreCase("DE"))
+            {
+                //catch the exception thrown by the DETaxComputation
+                try {
+                    tc.computeTax(purItems, date);
+                    System.out.println("Total: $" + totalwithTax(purItems.getTotalCost(), tc.computeTax(purItems, date)));
+                }
+                catch (ArithmeticException e)
+                {
+                }
+            }
+        else
+            {
+                //Get the total amount before taxes
+                System.out.println(" ");
+                System.out.println("Total before taxes: $" + purItems.getTotalCost());
 
-        //Final total
-        System.out.println(" ");
-        System.out.println("Total with taxes: $" + totalwithTax(purItems.getTotalCost(), tc.computeTax(purItems, date)));
+                System.out.println(store_header.getState_code() + " Sales tax $: " + tc.computeTax(purItems, date));
+
+                //Final total
+                System.out.println(" ");
+                System.out.println("Total with taxes: $" + totalwithTax(purItems.getTotalCost(), tc.computeTax(purItems, date)));
+            }
 
         System.out.println("-------------------------------------------------------------------------");
 

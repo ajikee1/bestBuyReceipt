@@ -10,18 +10,11 @@ import java.util.Calendar;
 public class DETaxComputation extends TaxComputationMethod {
 
     @Override
-    public double computeTax(PurchasedItems purchaseditems, Calendar purchaseDate) {
+    // throw an exception since DE has no tax
+    public double computeTax(PurchasedItems purchaseditems, Calendar purchaseDate) throws ArithmeticException{
 
-        double deTax = .00;
-        double tax = 0.00;
-
-        //calling the local taxHoliday() method to see if the date is a tax holiday
-        boolean isTaxFreeHoliday = taxHoliday(purchaseDate);
-
-        if (isTaxFreeHoliday == false) {
-            tax = purchaseditems.getTotalCost() * deTax;
-        }
-        return tax;
+       // throw new ArithmeticException("DE does not charge sales tax");
+        return 0.00;
     }
 
     //always returns false as there is no tax in this state
